@@ -20,12 +20,15 @@ var path = d3.geo.path()
 
 //defines bounds for colors/legend
 var color = d3.scale.threshold()
-    .domain([1, 10, 50, 100, 500, 1000, 2000, 5000])
-    .range(["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000"]);
+    //.domain([1, 10, 50, 100, 500, 1000, 2000, 5000])
+    .domain([.1, 1, 2, 3, 4])
+    //.range(["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000"]);
+    .range(colorbrewer.Blues[6]);
 
 //position encoding for the key only.
 var x = d3.scale.linear()
-    .domain([0, 5100])
+    //.domain([0, 5100]) //-0.6, 5
+    .domain([-0.6, 5.0])
     .range([0, 480]);
 
 //Define x-axis
@@ -34,7 +37,8 @@ var xAxis = d3.svg.axis()
     .orient("bottom")
     .tickSize(13)
     .tickValues(color.domain())
-    .tickFormat(function(d) { return d >= 100 ? formatNumber(d) : null; });
+    .tickFormat(function(d){ return (d * 1000)})
+    //.tickFormat(function(d) { return d >= 100 ? formatNumber(d) : null; });
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
@@ -73,6 +77,8 @@ d3.json("il.json", function(error, il) {
 
   //get cencus tracts
   var tracts = topojson.feature(il, il.objects.tracts);
+
+  color.domain([1, 10, 50, 100, 500, 1000, 2000, 4000])
 
   // Clip tracts to land.
   svg.append("defs").append("clipPath")
