@@ -1,0 +1,40 @@
+svg {
+  font: 10px sans-serif;
+}
+
+.county-border {
+  fill: none;
+  stroke: #000000;
+  stroke-opacity: .3;
+}
+
+.key line {
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.key path {
+  display: none;
+}
+
+.caption {
+  font-weight: bold;
+}
+
+/*
+.tooltip {
+    position: absolute;				
+    width: auto;
+    height: auto;
+    font: 14px sans-serif;
+    font-weight: bold;
+    background: white;		
+    border-radius: 5px;			
+    pointer-events: none;
+    padding: 3px 3px 3px 3px;
+}
+*/
+
+
+
+
